@@ -1,0 +1,6 @@
+{
+  "name": "Shiv Milk & Sweets",
+  "description": "Taste & Purity Together Since 1999 - Premium Luxury Dairy & Sweets E-Commerce and Daily Subscriptions",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
