@@ -14,7 +14,6 @@ import { AdminDashboardModal } from './components/AdminDashboardModal';
 import { StoreLocatorModal } from './components/StoreLocatorModal';
 import { BulkOrderModal } from './components/BulkOrderModal';
 import { PincodeCheckerModal } from './components/PincodeCheckerModal';
-import { RecipesSection } from './components/RecipesSection';
 import { Footer } from './components/Footer';
 
 import { 
@@ -219,16 +218,7 @@ export function App() {
           />
         </div>
 
-        {/* Recipes & Culinary Magic */}
-        <div id="recipes">
-          <RecipesSection
-            recipes={MOCK_RECIPES}
-            onSelectProduct={(productId) => {
-              const prod = products.find((p) => p.id === productId);
-              if (prod) setQuickViewProduct(prod);
-            }}
-          />
-        </div>
+        
 
       </main>
 
