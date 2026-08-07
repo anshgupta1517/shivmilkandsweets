@@ -19,8 +19,22 @@ export const RecipesSection: React.FC<RecipesSectionProps> = ({ recipes, onSelec
   const [expandedRecipeId, setExpandedRecipeId] = useState<string | null>(recipes[0]?.id || null);
 
   return (
-    <section className="bg-[#FDF5E6] border-t border-[#800000]/10 py-12">
-    //   
+   // <section className="bg-[#FDF5E6] border-t border-[#800000]/10 py-12">
+    //   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        
+    //     {/* Header */}
+    //     <div className="text-center max-w-2xl mx-auto space-y-2">
+    //       <div className="flex items-center justify-center gap-2 text-[#800000] font-serif text-xs uppercase tracking-widest font-bold">
+    //         <BookOpen className="w-4 h-4 text-[#D4AF37]" />
+    //         <span>Shiv Culinary Kitchen</span>
+    //       </div>
+    //       <h2 className="text-3xl sm:text-4xl font-serif font-black italic text-[#121212]">
+    //         Royal Dairy Recipes & Kitchen Magic
+    //       </h2>
+    //       <p className="text-xs sm:text-sm text-[#121212]/70">
+    //         Discover authentic Indian recipes made delicious with Shiv Pure Malai Paneer, A2 Milk, and Bilona Desi Ghee.
+    //       </p>
+    //     </div> 
 
         {/* Recipes Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
