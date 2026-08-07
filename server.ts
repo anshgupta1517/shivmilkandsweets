@@ -28,14 +28,45 @@ app.get('/api/health', (req, res) => {
 });
 
 // 2. Pincode verification endpoint
-const VALID_PINCODES: Record<string, { city: string; area: string; estimatedDelivery: string }> = {
-  '110001': { city: 'New Delhi', area: 'Connaught Place / Central Delhi', estimatedDelivery: 'Express 30 Mins' },
-  '110016': { city: 'New Delhi', area: 'Hauz Khas / Green Park', estimatedDelivery: 'Morning 6 AM Slot' },
-  '201301': { city: 'Noida', area: 'Sector 18 / Atta Market', estimatedDelivery: 'Express 45 Mins' },
-  '122002': { city: 'Gurugram', area: 'DLF Phase II / Cyber City', estimatedDelivery: 'Express 30 Mins' },
-  '110024': { city: 'New Delhi', area: 'Lajpat Nagar / Defence Colony', estimatedDelivery: 'Express 40 Mins' },
-  '201307': { city: 'Noida', area: 'Sector 62 / Electronic City', estimatedDelivery: 'Morning 6 AM Slot' },
-  '160017': { city: 'Chandigarh', area: 'Sector 17 Plaza', estimatedDelivery: 'Next Morning 6 AM' }
+const VALID_PINCODES: Record<
+  string,
+  { city: string; area: string; estimatedDelivery: string }
+> = {
+  "250001": {
+    city: "Meerut",
+    area: "Sharda Road",
+    estimatedDelivery: "Same Day Delivery",
+  },
+  "250002": {
+    city: "Meerut",
+    area: "Begum Bridge",
+    estimatedDelivery: "Same Day Delivery",
+  },
+  "250003": {
+    city: "Meerut",
+    area: "Garh Road",
+    estimatedDelivery: "Same Day Delivery",
+  },
+  "250004": {
+    city: "Meerut",
+    area: "Kanker Khera",
+    estimatedDelivery: "Same Day Delivery",
+  },
+  "250005": {
+    city: "Meerut",
+    area: "Modipuram",
+    estimatedDelivery: "Same Day Delivery",
+  },
+  "250103": {
+    city: "Meerut",
+    area: "Pallavpuram",
+    estimatedDelivery: "Same Day Delivery",
+  },
+  "250110": {
+    city: "Meerut",
+    area: "Partapur",
+    estimatedDelivery: "Same Day Delivery",
+  },
 };
 
 app.post('/api/pincode/check', (req, res) => {
@@ -61,13 +92,17 @@ app.post('/api/pincode/check', (req, res) => {
       res.json({
         available: true,
         pincode: cleanPin,
-        city: 'Delhi NCR Region',
-        area: 'Standard Delivery Zone',
-        estimatedDelivery: 'Next Morning 6 AM Slot',
-        slots: ['Morning 6:00 AM - 8:00 AM', 'Evening 6:00 PM - 8:00 PM']
+       city: "Meerut",
+area: "Meerut City",
+estimatedDelivery: "Same Day Delivery",
+        slots: [
+  "Morning (8:00 AM - 10:00 AM)",
+  "Afternoon (12:00 PM - 2:00 PM)",
+  "Evening (6:00 PM - 8:00 PM)",
+]
       });
     } else {
-      res.json({ available: false, message: 'Pincode not currently serviceable. We are expanding rapidly!' });
+      res.json({ available: false, message: "Sorry! We currently deliver only in Meerut. More cities coming soon." });
     }
   }
 });
@@ -90,14 +125,24 @@ app.post('/api/ai/chat', async (req, res) => {
       return;
     }
 
-    const systemInstruction = `You are "Shiv Dairy Sommelier", the executive AI concierge and culinary expert for Shiv Milk & Sweets (Taste & Purity Together Since 1999).
-You specialize in:
-- Recommending authentic Indian sweets (Kaju Katli, Milk Cake, Gulab Jamun, Rasgulla, Peda, Burfi).
-- Advising on daily organic A2 Cow Milk & Full Cream Buffalo Milk subscriptions.
-- Explaining the traditional Vedic Bilona Ghee process.
-- Recommending festival gift hampers and corporate/wedding bulk orders.
-- Guiding users on health benefits of A2 milk, soft Malai Paneer, and probiotic Kulhad Curd/Lassi.
-Keep responses regal, polite, helpful, and concise with bullet points when applicable. Include Indian cultural charm!`;
+   const systemInstruction = `
+You are the official AI assistant of Shiv Milk & Sweets.
+
+Business Information:
+- Owner: Lavdhansh Gupta
+- Shop: Shiv Milk & Sweets
+- Address: Shop No. 1, Sharda Road, Meerut, Uttar Pradesh
+- Phone: +91 7060121517
+- Email: anshgupta7060bgmi@gmail.com
+- Opening Hours: 8:00 AM – 10:00 PM
+
+Your responsibilities:
+- Help customers choose sweets and dairy products.
+- Recommend products based on festivals and occasions.
+- Answer questions about milk, paneer, ghee, lassi, and sweets.
+- Help with delivery and bulk orders in Meerut.
+- Be polite, professional, and concise.
+`;
 
     const response = await ai.models.generateContent({
       model: 'gemini-3.6-flash',
